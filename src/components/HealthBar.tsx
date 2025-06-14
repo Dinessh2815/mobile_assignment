@@ -23,14 +23,11 @@ const HealthBar: React.FC<HealthBarProps> = ({
   const pointerX =
     ((clampedScore - min) / (max - min)) * BAR_WIDTH - POINTER_WIDTH / 2;
 
-  return (    <View style={tw`items-center mt-6`}>
-      <View
-        style={[tw`items-center relative`, { width: BAR_WIDTH }]}
-      >
+  return (
+    <View style={tw`items-center mt-6`}>
+      <View style={[tw`items-center relative`, { width: BAR_WIDTH }]}>
         {/* Pointer */}
-        <View
-          style={[tw`absolute -top-[18px] z-10`, { left: pointerX }]}
-        >
+        <View style={[tw`absolute -top-[18px] z-10`, { left: pointerX }]}>
           <Svg width={20} height={11} viewBox="0 0 20 11" fill="none">
             <Path
               d="M10 11L0.473721 0.499998L19.5263 0.5L10 11Z"
@@ -66,9 +63,8 @@ const HealthBar: React.FC<HealthBarProps> = ({
             fill="url(#barGradient)"
           />
         </Svg>
-        {/* Labels */}        <View
-          style={[tw`flex-row justify-between mt-1`, { width: BAR_WIDTH }]}
-        >
+        {/* Labels */}{" "}
+        <View style={[tw`flex-row justify-between mt-1`, { width: BAR_WIDTH }]}>
           {[0, 600, 1200, 1800, 2400, 3000].map((val) => (
             <Text key={val} style={tw`text-[#D5D8FF] text-xs`}>
               {val}

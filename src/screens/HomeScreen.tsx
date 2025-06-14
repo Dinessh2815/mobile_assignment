@@ -58,9 +58,8 @@ const HomeScreen = () => {
   return (
     <SafeAreaView style={tw`flex-1 bg-white`}>
       <ScrollView style={tw`flex-1`} showsVerticalScrollIndicator={false}>
-        {/* Hero Section with Header and Main Content */}        <View
-          style={tw`w-full bg-[#3D53B6] h-[389px] mt-[30px]`}
-        >
+        {/* Hero Section with Header and Main Content */}{" "}
+        <View style={tw`w-full bg-[#3D53B6] h-[389px] mt-[30px]`}>
           {/* Header */}
           <View style={tw`flex-row justify-between items-center p-4`}>
             <View
@@ -80,7 +79,8 @@ const HomeScreen = () => {
             <TouchableOpacity>
               <Icon name="notifications-outline" size={24} color="#fff" />
             </TouchableOpacity>
-          </View>          <View style={tw`flex-col gap-[30px]`}>
+          </View>{" "}
+          <View style={tw`flex-col gap-[30px]`}>
             <View>
               <Text
                 style={tw`text-[#D5D8FF] w-[110px] h-[29px] text-base text-center leading-[19px] left-[10px] top-[10px]`}
@@ -95,22 +95,19 @@ const HomeScreen = () => {
                 1,740
               </Text>
 
-              <Text
-                style={tw`text-[#D5D8FF] left-[10px] top-[20px]`}
-              >
+              <Text style={tw`text-[#D5D8FF] left-[10px] top-[20px]`}>
                 This score is for information purposes only.
               </Text>
             </View>
             <View></View>
-          </View>          <View style={tw`items-center mt-6`}>
+          </View>{" "}
+          <View style={tw`items-center mt-6`}>
             {/* Health Bar with Pointer */}
             <HealthBar score={1740} />
           </View>
         </View>
-
-        {/* Main Content Section */}        <View
-          style={tw`flex-1 bg-white rounded-t-2xl -mt-2.5 p-5 shadow`}
-        >
+        {/* Main Content Section */}{" "}
+        <View style={tw`flex-1 bg-white rounded-t-2xl -mt-2.5 p-5 shadow`}>
           {" "}
           <AppointmentCard
             onPress={() => navigation.navigate("AppointmentDetails")}
@@ -119,7 +116,8 @@ const HomeScreen = () => {
           <View style={tw`mt-6`}>
             <Text style={tw`text-gray-800 text-xl font-bold mb-4`}>
               Health Overview
-            </Text>            <ScrollView
+            </Text>{" "}
+            <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={tw`flex-row pr-5`}
@@ -159,7 +157,5 @@ const HomeScreen = () => {
     </SafeAreaView>
   );
 };
-
-
 
 export default HomeScreen;
