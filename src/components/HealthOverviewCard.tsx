@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import tw from "../utils/tw";
 
@@ -20,67 +20,26 @@ const HealthOverviewCard: React.FC<HealthOverviewCardProps> = ({
   backgroundColor,
   onPress,
 }) => {
-  return (
-    <TouchableOpacity
-      style={[styles.cardContainer, { backgroundColor }]}
+  return (    <TouchableOpacity
+      style={[
+        tw`w-[150px] min-w-[130px] h-[110px] mr-2.5 rounded-2xl py-3 px-3 mb-2.5 shadow overflow-hidden`, 
+        { backgroundColor }
+      ]}
       onPress={onPress}
     >
       <View style={tw`flex-row justify-between items-start`}>
-        <Text style={styles.title}>{title}</Text>
+        <Text style={tw`text-base font-medium text-gray-800 mb-1`}>{title}</Text>
         <Icon name="chevron-forward" size={18} color="#718096" />
       </View>
 
-      <Text style={styles.updatedText}>{updatedText}</Text>
+      <Text style={tw`text-xs text-gray-500 opacity-80`}>{updatedText}</Text>
 
       <View style={tw`flex-row items-end mt-2`}>
-        <Text style={styles.valueText}>{value}</Text>
-        {unit && <Text style={styles.unitText}>{unit}</Text>}
+        <Text style={tw`text-[22px] font-bold text-gray-800 mt-1 flex-shrink-1 flex-wrap`}>{value}</Text>
+        {unit && <Text style={tw`text-xs text-gray-500 ml-0.5 mb-1`}>{unit}</Text>}
       </View>
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  cardContainer: {
-    width: 150,
-    minWidth: 130,
-    height: 110,
-    marginRight: 10,
-    borderRadius: 16,
-    padding: 12,
-    marginBottom: 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.08,
-    shadowRadius: 2,
-    elevation: 1,
-    overflow: "hidden",
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: "500",
-    color: "#1A202C",
-    marginBottom: 4,
-  },
-  updatedText: {
-    fontSize: 12,
-    color: "#4A5568",
-    opacity: 0.8,
-  },
-  valueText: {
-    fontSize: 22,
-    fontWeight: "bold",
-    color: "#2D3748",
-    marginTop: 4,
-    flexShrink: 1,
-    flexWrap: "wrap",
-  },
-  unitText: {
-    fontSize: 12,
-    color: "#718096",
-    marginLeft: 2,
-    marginBottom: 4,
-  },
-});
 
 export default HealthOverviewCard;

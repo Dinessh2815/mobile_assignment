@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   SafeAreaView,
   ScrollView,
-  StyleSheet,
 } from "react-native";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -59,12 +58,8 @@ const HomeScreen = () => {
   return (
     <SafeAreaView style={tw`flex-1 bg-white`}>
       <ScrollView style={tw`flex-1`} showsVerticalScrollIndicator={false}>
-        {/* Hero Section with Header and Main Content */}
-        <View
-          style={[
-            tw`w-full`,
-            { backgroundColor: "#3D53B6", height: 389, marginTop: 30 },
-          ]}
+        {/* Hero Section with Header and Main Content */}        <View
+          style={tw`w-full bg-[#3D53B6] h-[389px] mt-[30px]`}
         >
           {/* Header */}
           <View style={tw`flex-row justify-between items-center p-4`}>
@@ -85,75 +80,36 @@ const HomeScreen = () => {
             <TouchableOpacity>
               <Icon name="notifications-outline" size={24} color="#fff" />
             </TouchableOpacity>
-          </View>
-          <View style={[tw`flex-col`, { gap: 30 }]}>
+          </View>          <View style={tw`flex-col gap-[30px]`}>
             <View>
               <Text
-                style={{
-                  color: "#D5D8FF",
-                  width: 110,
-                  height: 29,
-                  fontSize: 16,
-                  textAlign: "center",
-                  lineHeight: 19,
-                  left: 10,
-                  top: 10,
-                }}
+                style={tw`text-[#D5D8FF] w-[110px] h-[29px] text-base text-center leading-[19px] left-[10px] top-[10px]`}
               >
                 Health Score
               </Text>
             </View>
             <View>
               <Text
-                style={{
-                  color: "#FFFFFF",
-                  width: 110,
-                  height: 48,
-                  fontSize: 40,
-                  fontWeight: "bold",
-                  textAlign: "center",
-                  letterSpacing: -1,
-                  left: 10,
-                  top: 10,
-                }}
+                style={tw`text-white w-[110px] h-[48px] text-[40px] font-bold text-center tracking-tighter left-[10px] top-[10px]`}
               >
                 1,740
               </Text>
 
               <Text
-                style={{
-                  color: "#D5D8FF",
-                  left: 10,
-                  top: 20,
-                }}
+                style={tw`text-[#D5D8FF] left-[10px] top-[20px]`}
               >
                 This score is for information purposes only.
               </Text>
             </View>
             <View></View>
-          </View>
-          <View style={{ alignItems: "center", marginTop: 24 }}>
+          </View>          <View style={tw`items-center mt-6`}>
             {/* Health Bar with Pointer */}
             <HealthBar score={1740} />
           </View>
         </View>
 
-        {/* Main Content Section */}
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: "#fff",
-            borderTopLeftRadius: 16,
-            borderTopRightRadius: 16,
-            marginTop: -10,
-            padding: 20,
-            // Optional: add shadow for elevation
-            shadowColor: "#000",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.1,
-            shadowRadius: 4,
-            elevation: 4,
-          }}
+        {/* Main Content Section */}        <View
+          style={tw`flex-1 bg-white rounded-t-2xl -mt-2.5 p-5 shadow`}
         >
           {" "}
           <AppointmentCard
@@ -163,11 +119,10 @@ const HomeScreen = () => {
           <View style={tw`mt-6`}>
             <Text style={tw`text-gray-800 text-xl font-bold mb-4`}>
               Health Overview
-            </Text>
-            <ScrollView
+            </Text>            <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}
-              contentContainerStyle={styles.cardsContainer}
+              contentContainerStyle={tw`flex-row pr-5`}
             >
               {/* Steps Card */}
               <HealthOverviewCard
@@ -205,11 +160,6 @@ const HomeScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  cardsContainer: {
-    flexDirection: "row",
-    paddingRight: 20,
-  },
-});
+
 
 export default HomeScreen;

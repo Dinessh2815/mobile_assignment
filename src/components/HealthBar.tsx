@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 import Svg, { Rect, Defs, LinearGradient, Stop, Path } from "react-native-svg";
+import tw from "../utils/tw";
 
 interface HealthBarProps {
   score: number;
@@ -22,14 +23,13 @@ const HealthBar: React.FC<HealthBarProps> = ({
   const pointerX =
     ((clampedScore - min) / (max - min)) * BAR_WIDTH - POINTER_WIDTH / 2;
 
-  return (
-    <View style={{ alignItems: "center", marginTop: 24 }}>
+  return (    <View style={tw`items-center mt-6`}>
       <View
-        style={{ width: BAR_WIDTH, alignItems: "center", position: "relative" }}
+        style={[tw`items-center relative`, { width: BAR_WIDTH }]}
       >
         {/* Pointer */}
         <View
-          style={{ position: "absolute", left: pointerX, top: -18, zIndex: 2 }}
+          style={[tw`absolute -top-[18px] z-10`, { left: pointerX }]}
         >
           <Svg width={20} height={11} viewBox="0 0 20 11" fill="none">
             <Path
@@ -66,17 +66,11 @@ const HealthBar: React.FC<HealthBarProps> = ({
             fill="url(#barGradient)"
           />
         </Svg>
-        {/* Labels */}
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            width: BAR_WIDTH,
-            marginTop: 4,
-          }}
+        {/* Labels */}        <View
+          style={[tw`flex-row justify-between mt-1`, { width: BAR_WIDTH }]}
         >
           {[0, 600, 1200, 1800, 2400, 3000].map((val) => (
-            <Text key={val} style={{ color: "#D5D8FF", fontSize: 13 }}>
+            <Text key={val} style={tw`text-[#D5D8FF] text-xs`}>
               {val}
             </Text>
           ))}
