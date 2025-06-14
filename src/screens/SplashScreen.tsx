@@ -5,7 +5,7 @@ import { SvgXml } from "react-native-svg";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types";
-import { getIsLoggedIn } from "../utils/storage";
+import { getIsLoggedIn, getHealthData } from "../utils/storage";
 import tw from "../utils/tw";
 
 // Import the SVG logo
@@ -23,7 +23,10 @@ const SplashScreen = () => {
   const navigation = useNavigation<SplashScreenNavigationProp>();
 
   useEffect(() => {
-    const checkLoginStatus = async () => {
+    const initializeApp = async () => {
+      // Initialize health data on first launch
+      await getHealthData(); // This will set default values if not already set
+
       // Wait for 2 seconds
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
@@ -38,8 +41,9 @@ const SplashScreen = () => {
       }
     };
 
-    checkLoginStatus();
+    initializeApp();
   }, [navigation]);
+
   return (
     <LinearGradient
       colors={["#204CBB", "#00AB9A"]} // Kept as direct colors for LinearGradient

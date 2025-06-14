@@ -10,6 +10,9 @@ import LoginScreen from "./src/screens/LoginScreen";
 import MainTabs from "./src/navigation/MainTabs";
 import AccountScreen from "./src/screens/AccountScreen";
 import AppointmentDetails from "./src/screens/AppointmentDetails";
+import StepsEntryScreen from "./src/screens/StepsEntryScreen";
+import BMIEntryScreen from "./src/screens/BMIEntryScreen";
+import SleepEntryScreen from "./src/screens/SleepEntryScreen";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -31,6 +34,9 @@ export default function App() {
           name="AppointmentDetails"
           component={AppointmentDetails}
         />
+        <Stack.Screen name="StepsEntry" component={StepsEntryScreen} />
+        <Stack.Screen name="BMIEntry" component={BMIEntryScreen} />
+        <Stack.Screen name="SleepEntry" component={SleepEntryScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
