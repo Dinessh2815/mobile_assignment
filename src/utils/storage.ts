@@ -1,9 +1,42 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { User, HealthData } from "../types";
+import { User, HealthData, TodoItem } from "../types";
 
 const USER_KEY = "@proactively_user";
 const IS_LOGGED_IN_KEY = "@proactively_is_logged_in";
 const HEALTH_DATA_KEY = "@proactively_health_data";
+const TODO_ITEMS_KEY = "@proactively_todo_items";
+
+// Default todo items
+const DEFAULT_TODO_ITEMS: TodoItem[] = [
+  {
+    id: "1",
+    text: "Achieve 30k steps every week for blood sugar",
+    completed: false,
+    assignee: "Laurie Simons",
+    date: "Sep 5, 2024",
+  },
+  {
+    id: "2",
+    text: "Take up health Coaching",
+    completed: false,
+    assignee: "Laurie Simons",
+    date: "Sep 5, 2024",
+  },
+  {
+    id: "3",
+    text: "Go to a nearby gym and workout for 30 mins",
+    completed: false,
+    assignee: "Laurie Simons",
+    date: "Sep 5, 2024",
+  },
+  {
+    id: "4",
+    text: "Complete 2 courses of Dr. Laurie Simons",
+    completed: true,
+    assignee: "Laurie Simons",
+    date: "Aug 30, 2024",
+  },
+];
 
 // Default health data values
 const DEFAULT_HEALTH_DATA: HealthData = {
@@ -92,12 +125,41 @@ export const getIsLoggedIn = async (): Promise<boolean> => {
   }
 };
 
+// Todo items functions
+export const storeTodoItems = async (todoItems: TodoItem[]): Promise<void> => {
+  try {
+    await AsyncStorage.setItem(TODO_ITEMS_KEY, JSON.stringify(todoItems));
+  } catch (error) {
+    console.error("Error storing todo items:", error);
+  }
+};
+
+export const getTodoItems = async (): Promise<TodoItem[]> => {
+  try {
+    const todoItemsJson = await AsyncStorage.getItem(TODO_ITEMS_KEY);
+    return todoItemsJson ? JSON.parse(todoItemsJson) : DEFAULT_TODO_ITEMS;
+  } catch (error) {
+    console.error("Error retrieving todo items:", error);
+    return DEFAULT_TODO_ITEMS;
+  }
+};
+
+export const updateTodoItem = async (id: string, updates: Partial<TodoItem>): Promise<TodoItem[]> => {
+  const currentItems = await getTodoItems();
+  const updatedItems = currentItems.map(item => 
+    item.id === id ? { ...item, ...updates } : item
+  );
+  await storeTodoItems(updatedItems);
+  return updatedItems;
+};
+
 export const clearStorage = async (): Promise<void> => {
   try {
     await AsyncStorage.multiRemove([
       USER_KEY,
       IS_LOGGED_IN_KEY,
       HEALTH_DATA_KEY,
+      TODO_ITEMS_KEY,
     ]);
   } catch (error) {
     console.error("Error clearing storage:", error);

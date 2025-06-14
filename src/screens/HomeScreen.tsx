@@ -15,6 +15,7 @@ import tw from "../utils/tw";
 import HealthBar from "../components/HealthBar";
 import AppointmentCard from "../components/AppointmentCard";
 import HealthOverviewCard from "../components/HealthOverviewCard";
+import TodoList from "../components/TodoList";
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -151,6 +152,10 @@ const HomeScreen = () => {
                 onPress={() => navigation.navigate("SleepEntry")}
               />
             </ScrollView>
+          </View>
+            {/* Todo List Section */}
+          <View style={tw`mt-6 mb-16`}> {/* Increased bottom margin for better spacing */}
+            <TodoList />
           </View>
         </View>
       </ScrollView>

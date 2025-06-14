@@ -9,6 +9,14 @@ export interface HealthData {
   sleep: number;
 }
 
+export interface TodoItem {
+  id: string;
+  text: string;
+  completed: boolean;
+  assignee: string;
+  date: string;
+}
+
 export type RootStackParamList = {
   Splash: undefined;
   Login: undefined;
