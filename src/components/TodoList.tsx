@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
-import { Svg, Rect } from 'react-native-svg';
-import { TodoItem } from '../types';
-import { getTodoItems, updateTodoItem } from '../utils/storage';
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
+import { Svg, Rect } from "react-native-svg";
+import { TodoItem } from "../types";
+import { getTodoItems, updateTodoItem } from "../utils/storage";
 
 // SVG components for the progress bar
 const FilledBar = ({ width }: { width: number }) => (
@@ -24,23 +30,23 @@ interface TodoListProps {
 const TodoList: React.FC<TodoListProps> = ({ tasks = [] }) => {
   // State to track todo items
   const [todoItems, setTodoItems] = useState<TodoItem[]>([]);
-  
+
   // Load todo items from storage
   useEffect(() => {
     const loadTodoItems = async () => {
       const items = await getTodoItems();
       setTodoItems(items);
     };
-    
+
     loadTodoItems();
   }, []);
 
   // Calculate completion metrics
-  const completedCount = todoItems.filter(item => item.completed).length;
+  const completedCount = todoItems.filter((item) => item.completed).length;
   const totalCount = todoItems.length;
   const completionText = `${completedCount}/${totalCount} Completed`;
   const completionPercentage = (completedCount / totalCount) * 100;
-  
+
   // Total width of the progress bar
   const TOTAL_WIDTH = 335;
   // Calculate filled bar width based on completion percentage
@@ -48,18 +54,20 @@ const TodoList: React.FC<TodoListProps> = ({ tasks = [] }) => {
   // Toggle task completion
   const toggleTaskCompletion = async (id: string) => {
     // Find the task to toggle
-    const taskToToggle = todoItems.find(item => item.id === id);
+    const taskToToggle = todoItems.find((item) => item.id === id);
     if (!taskToToggle) return;
-    
+
     // Update in storage and state
-    const updatedItems = await updateTodoItem(id, { completed: !taskToToggle.completed });
+    const updatedItems = await updateTodoItem(id, {
+      completed: !taskToToggle.completed,
+    });
     setTodoItems(updatedItems);
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Let's check off your to-dos</Text>
-      
+
       {/* Progress bar */}
       <View style={styles.progressBarContainer}>
         <Text style={styles.completionText}>{completionText}</Text>
@@ -72,7 +80,7 @@ const TodoList: React.FC<TodoListProps> = ({ tasks = [] }) => {
           </View>
         </View>
       </View>
-      
+
       {/* Todo items */}
       <ScrollView style={styles.taskList}>
         {todoItems.map((item) => (
@@ -82,14 +90,22 @@ const TodoList: React.FC<TodoListProps> = ({ tasks = [] }) => {
             onPress={() => toggleTaskCompletion(item.id)}
           >
             <View style={styles.checkboxContainer}>
-              <View style={[styles.checkbox, item.completed && styles.checkboxChecked]}>
-                {item.completed && (
-                  <Text style={styles.checkmark}>✓</Text>
-                )}
+              <View
+                style={[
+                  styles.checkbox,
+                  item.completed && styles.checkboxChecked,
+                ]}
+              >
+                {item.completed && <Text style={styles.checkmark}>✓</Text>}
               </View>
             </View>
             <View style={styles.taskContent}>
-              <Text style={[styles.taskText, item.completed && styles.taskTextCompleted]}>
+              <Text
+                style={[
+                  styles.taskText,
+                  item.completed && styles.taskTextCompleted,
+                ]}
+              >
                 {item.text}
               </Text>
               <Text style={styles.taskMeta}>
@@ -105,45 +121,46 @@ const TodoList: React.FC<TodoListProps> = ({ tasks = [] }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: "#FFFFFF",
     padding: 16,
     borderRadius: 16,
-    width: '100%',
-    height:'100%',
+    width: "100%",
+    height: "100%",
   },
   title: {
     fontSize: 18,
-    fontWeight: 'bold',
-    color: '#000000',
+    fontWeight: "bold",
+    color: "#000000",
     marginBottom: 12,
   },
   progressBarContainer: {
     marginBottom: 16,
   },
   completionText: {
-    color: '#AAAAAA',
+    color: "#AAAAAA",
     marginBottom: 8,
     fontSize: 13,
   },
   progressBar: {
-    position: 'relative',
+    position: "relative",
     height: 13,
   },
   unfilledBar: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
   },
   filledBarContainer: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
-  },  taskList: {
+  },
+  taskList: {
     maxHeight: 400,
   },
   taskContainer: {
-    flexDirection: 'row',
-    backgroundColor: '#FFFFFF',
+    flexDirection: "row",
+    backgroundColor: "#FFFFFF",
     borderRadius: 16,
     padding: 16,
     marginBottom: 12,
@@ -158,40 +175,40 @@ const styles = StyleSheet.create({
   },
   checkboxContainer: {
     marginRight: 16,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   checkbox: {
     width: 24,
     height: 24,
     borderWidth: 1,
-    borderColor: '#CCCCCC',
+    borderColor: "#CCCCCC",
     borderRadius: 4,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   checkboxChecked: {
-    backgroundColor: '#77C69F',
-    borderColor: '#77C69F',
+    backgroundColor: "#77C69F",
+    borderColor: "#77C69F",
   },
   checkmark: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: "white",
+    fontWeight: "bold",
   },
   taskContent: {
     flex: 1,
   },
   taskText: {
     fontSize: 16,
-    color: '#000000',
-    fontWeight: '500',
+    color: "#000000",
+    fontWeight: "500",
     marginBottom: 4,
   },
   taskTextCompleted: {
-    color: '#777777',
+    color: "#777777",
   },
   taskMeta: {
     fontSize: 12,
-    color: '#777777',
+    color: "#777777",
   },
 });
 

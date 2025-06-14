@@ -144,9 +144,12 @@ export const getTodoItems = async (): Promise<TodoItem[]> => {
   }
 };
 
-export const updateTodoItem = async (id: string, updates: Partial<TodoItem>): Promise<TodoItem[]> => {
+export const updateTodoItem = async (
+  id: string,
+  updates: Partial<TodoItem>
+): Promise<TodoItem[]> => {
   const currentItems = await getTodoItems();
-  const updatedItems = currentItems.map(item => 
+  const updatedItems = currentItems.map((item) =>
     item.id === id ? { ...item, ...updates } : item
   );
   await storeTodoItems(updatedItems);

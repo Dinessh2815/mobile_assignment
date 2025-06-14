@@ -93,7 +93,7 @@ const HomeScreen = () => {
               <Text
                 style={tw`text-white w-[110px] h-[48px] text-[40px] font-bold text-center tracking-tighter left-[10px] top-[10px]`}
               >
-                1,740
+                2,740
               </Text>
 
               <Text style={tw`text-[#D5D8FF] left-[10px] top-[20px]`}>
@@ -104,7 +104,7 @@ const HomeScreen = () => {
           </View>{" "}
           <View style={tw`items-center mt-6`}>
             {/* Health Bar with Pointer */}
-            <HealthBar score={1740} />
+            <HealthBar score={2740} />
           </View>
         </View>
         {/* Main Content Section */}{" "}
@@ -153,8 +153,10 @@ const HomeScreen = () => {
               />
             </ScrollView>
           </View>
-            {/* Todo List Section */}
-          <View style={tw`mt-6 mb-16`}> {/* Increased bottom margin for better spacing */}
+          {/* Todo List Section */}
+          <View style={tw`mt-6 mb-16`}>
+            {" "}
+            {/* Increased bottom margin for better spacing */}
             <TodoList />
           </View>
         </View>
