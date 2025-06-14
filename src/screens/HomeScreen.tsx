@@ -155,15 +155,20 @@ const HomeScreen = () => {
             elevation: 4,
           }}
         >
+          {" "}
           <AppointmentCard
             onPress={() => navigation.navigate("AppointmentDetails")}
-          />{" "}
+          />
           {/* Health Overview Section */}
           <View style={tw`mt-6`}>
             <Text style={tw`text-gray-800 text-xl font-bold mb-4`}>
               Health Overview
             </Text>
-            <View style={styles.cardsContainer}>
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.cardsContainer}
+            >
               {/* Steps Card */}
               <HealthOverviewCard
                 title="Steps"
@@ -192,7 +197,7 @@ const HomeScreen = () => {
                 backgroundColor="#FFF9E8"
                 onPress={() => navigation.navigate("SleepEntry")}
               />
-            </View>
+            </ScrollView>
           </View>
         </View>
       </ScrollView>
@@ -203,8 +208,7 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   cardsContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    flexWrap: "wrap",
+    paddingRight: 20,
   },
 });
 

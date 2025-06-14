@@ -42,16 +42,19 @@ const HealthOverviewCard: React.FC<HealthOverviewCardProps> = ({
 
 const styles = StyleSheet.create({
   cardContainer: {
-    width: "32%",
+    width: 150,
+    minWidth: 130,
     height: 110,
+    marginRight: 10,
     borderRadius: 16,
-    padding: 16,
+    padding: 12,
     marginBottom: 10,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.08,
     shadowRadius: 2,
     elevation: 1,
+    overflow: "hidden",
   },
   title: {
     fontSize: 16,
@@ -65,10 +68,12 @@ const styles = StyleSheet.create({
     opacity: 0.8,
   },
   valueText: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: "bold",
     color: "#2D3748",
     marginTop: 4,
+    flexShrink: 1,
+    flexWrap: "wrap",
   },
   unitText: {
     fontSize: 12,
