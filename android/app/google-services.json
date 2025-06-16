@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "483236235310",
+    "project_id": "proactively-ccf2d",
+    "storage_bucket": "proactively-ccf2d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:483236235310:android:3ce1f709ca4e37bb1b77bf",
+        "android_client_info": {
+          "package_name": "com.proactively.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiJJCLkqdgZcUQZyXj2-26omKMg4ipC_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
